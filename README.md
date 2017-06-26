@@ -178,5 +178,5 @@ wct -l chrome
 [installation guide](http://elementalselenium.com/tips/69-safari)
 **Make sure to `enable automation` in Safari**
 
-```html 
-```
+### Polycasts #37 - Testing AJAX with Web Component Tester
+[video url](https://www.youtube.com/watch?v=_9qARcdCAn4)
