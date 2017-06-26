@@ -22,6 +22,7 @@ const polymerJson = require('./polymer.json');
 const polymerProject = new polymerBuild.PolymerProject(polymerJson);
 const buildDirectory = 'build';
 
+const uglify = require('gulp-uglify');  
 /**
  * Waits for the given ReadableStream
  */
@@ -43,7 +44,7 @@ function build() {
           // Oh, well do you want to minify stuff? Go for it!
           // Here's how splitHtml & gulpif work
           .pipe(polymerProject.splitHtml())
-          // .pipe(gulpif(/\.js$/, uglify()))
+          .pipe(gulpif(/\.js$/, uglify()))
           // .pipe(gulpif(/\.css$/, cssSlam()))
           // .pipe(gulpif(/\.html$/, htmlMinifier()))
           .pipe(gulpif(/\.(png|gif|jpg|svg)$/, imagemin()))
@@ -52,7 +53,7 @@ function build() {
         // Okay, now let's do the same to your dependencies
         let dependenciesStream = polymerProject.dependencies()
           .pipe(polymerProject.splitHtml())
-          // .pipe(gulpif(/\.js$/, uglify()))
+          .pipe(gulpif(/\.js$/, uglify()))
           // .pipe(gulpif(/\.css$/, cssSlam()))
           // .pipe(gulpif(/\.html$/, htmlMinifier()))
           .pipe(polymerProject.rejoinHtml());
